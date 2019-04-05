@@ -1,40 +1,42 @@
 <template>
   <div id="app">
     <div class="app-top">
-      <div class="app-control">
-        <div class="buttons has-addons">
-          <button
-            class="button has-text-link"
-            :disabled="pageNumber == 0"
-            @click="pageNumber = 0"
-          >
-            &#171;
-          </button>
-          <button
-            class="button has-text-link"
-            :disabled="pageNumber == 0"
-            @click="pageNumber--"
-          >
-            &#8249;
-          </button>
-          <button class="button app-pg-count is-static">{{ infoPages }}</button>
-          <button
-            class="button has-text-link"
-            :disabled="pageNumber == pageCount"
-            @click="pageNumber++"
-          >
-            &#8250;
-          </button>
-          <button
-            class="button has-text-link"
-            :disabled="pageNumber == pageCount"
-            @click="pageNumber = pageCount"
-          >
-            &#187;
-          </button>
-        </div>
+      <div class="buttons has-addons app-control">
+        <button
+          title="Go to first page"
+          class="button has-text-link"
+          :disabled="pageNumber == 0"
+          @click="pageNumber = 0"
+        >
+          &#171;
+        </button>
+        <button
+          :title="pageNumber ? 'Page ' + pageNumber : ''"
+          class="button has-text-link"
+          :disabled="pageNumber == 0"
+          @click="pageNumber--"
+        >
+          &#8249;
+        </button>
+        <button class="button app-pg-count is-static">{{ infoPages }}</button>
+        <button
+          :title="pageNumber != pageCount ? 'Page ' + (pageNumber + 2) : ''"
+          class="button has-text-link"
+          :disabled="pageNumber == pageCount"
+          @click="pageNumber++"
+        >
+          &#8250;
+        </button>
+        <button
+          title="Go to last page"
+          class="button has-text-link"
+          :disabled="pageNumber == pageCount"
+          @click="pageNumber = pageCount"
+        >
+          &#187;
+        </button>
       </div>
-      <label title="Words per page" class="select app-control">
+      <label title="Items per page" class="select app-control">
         <select v-model="perPage">
           <option
             v-for="n in [10, 40, 100, 200, 400, 1000]"
@@ -52,7 +54,7 @@
           }}</option>
         </select>
       </label>
-      <label title="Search" class="app-expand app-control">
+      <label title="Search" class="app-control">
         <input
           class="input"
           type="search"
@@ -62,27 +64,31 @@
         />
       </label>
     </div>
-    <table
-      class="app-table table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
-      v-show="paginatedData.length"
-    >
-      <thead>
-        <tr>
-          <th class="app-col-audio has-text-centered">&#9835;</th>
-          <th v-for="i18n in $options.i18n" :key="i18n">{{ i18n }}</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="item in paginatedData" :key="item.id">
-          <td class="app-cell-audio has-text-centered is-unselectable">
-            <a @click="playAudio(item.id)">&#9835;</a>
-          </td>
-          <td v-for="i18n in $options.i18n" :key="i18n">
-            {{ item[i18n] }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="app-wrap-table">
+      <table
+        class="app-table table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
+        v-show="paginatedData.length"
+      >
+        <thead>
+          <tr>
+            <th class="app-col-audio is-unselectable has-text-centered">
+              &#9835;
+            </th>
+            <th v-for="i18n in $options.i18n" :key="i18n">{{ i18n }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="item in paginatedData" :key="item.id">
+            <td class="app-cell-audio has-text-centered is-unselectable">
+              <a @click="playAudio(item.id)">&#9835;</a>
+            </td>
+            <td v-for="i18n in $options.i18n" :key="i18n">
+              {{ item[i18n] }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -178,10 +184,21 @@ export default {
 };
 </script>
 
-<style lang="css">
+<style lang="scss">
 html,
 body {
   height: 100%;
+}
+html {
+  overflow: scroll;
+}
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+input,
+select {
+  width: 100%;
 }
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
@@ -193,32 +210,47 @@ body {
 }
 .app-top {
   display: flex;
+  flex-wrap: wrap;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  padding: 10px 5px;
+  padding: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
   background: #fff;
   z-index: 99;
 }
 .app-control {
-  margin: 0 5px;
+  margin: 5px;
+  flex: 1 1 auto;
+  &.buttons {
+    margin: 5px;
+    .button {
+      margin: 0;
+    }
+  }
 }
-.app-expand {
-  flex: 1;
-  min-width: 100px;
-}
-.app-table {
-  table-layout: fixed;
+.app-wrap-table {
+  overflow-y: hidden;
 }
 .app-col-audio {
   width: 35px;
 }
 .app-pg-count {
-  min-width: 100px;
+  flex: 1;
 }
 .app-table td {
   vertical-align: middle;
+  white-space: normal;
+}
+@media all and (max-width: 600px) {
+  #app {
+    padding-top: 115px;
+  }
+}
+@media all and (max-width: 340px) {
+  #app {
+    padding-top: 160px;
+  }
 }
 </style>
