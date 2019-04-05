@@ -1,2 +1,2 @@
-# appli.lu
+# Appli.lu
 https://appli.lu
