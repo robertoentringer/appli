@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "serve:dist": "php -S localhost:5005 -t ./dist",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "now": " now --target production && open https://appli.lu"
   },
   "dependencies": {
     "axios": "^0.18.0",
