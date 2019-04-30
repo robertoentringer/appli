@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="app-top">
-      <div class="buttons has-addons app-control">
+      <div class="buttons app-control">
         <button
           title="Go to first page"
           class="button has-text-link"
@@ -114,11 +114,11 @@ export default {
   },
   created() {
     const lod = JSON.parse(localStorage.getItem(this.$options.cacheLod));
-    if (lod) this.lod = lod;
+    if (lod) this.lod = Object.freeze(lod);
     else
       axios
         .get(this.$options.sourceLod + "/data/lod.json")
-        .then(({ data: lod }) => (this.lod = lod))
+        .then(({ data: lod }) => (this.lod = Object.freeze(lod)))
         .then(() => this.savedData());
   },
   computed: {
@@ -232,6 +232,7 @@ select {
 }
 .app-wrap-table {
   overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 .app-col-audio {
   width: 35px;
