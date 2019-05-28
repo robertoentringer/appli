@@ -1,29 +1,18 @@
 # appli.lu
 
-## Project setup
-```
-npm install
-```
+A pretty simple Vue PWA for playing with the data of the Lëtzebuerger Online Dictionnaire (LOD)
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+Author : [Roberto Entringer](https://robertoentringer.com)  
+License: MIT  
+Website : https://appli.lu  
 
-### Compiles and minifies for production
-```
-npm run build
-```
+[![screenshot](screenshot.png?raw=true)](https://appli.lu)
 
-### Run your tests
-```
-npm run test
-```
+# Data source
 
-### Lints and fixes files
-```
-npm run lint
-```
+Data from the "Lëtzebuerger Online Dictionnaire" (LOD)  
+Website: http://www.lod.lu  
+Source: https://data.public.lu/fr/datasets/letzebuerger-online-dictionnaire-raw-data/  
+Licence: Creative Commons Zero (CC0) 
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+[![screenshot2.png](screenshot2.png?raw=true)](https://data.public.lu/fr/datasets/letzebuerger-online-dictionnaire-raw-data/)
