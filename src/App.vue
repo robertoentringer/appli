@@ -87,8 +87,6 @@
 
 <script>
 import axios from "axios"
-import "bulma"
-import "normalize.css"
 export default {
   name: "App",
   i18n: ["lu", "fr", "de", "en", "pt"],
@@ -175,6 +173,11 @@ export default {
 </script>
 
 <style lang="scss">
+@import "../node_modules/bulma/sass/utilities/_all.sass";
+@import "../node_modules/bulma/sass/base/_all.sass";
+@import "../node_modules/bulma/sass/form/_all.sass";
+@import "../node_modules/bulma/sass/elements/table.sass";
+@import "../node_modules/bulma/sass/elements/button.sass";
 html,
 body {
   height: 100%;
