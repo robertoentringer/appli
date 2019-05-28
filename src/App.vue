@@ -38,20 +38,13 @@
       </div>
       <label title="Items per page" class="select app-control">
         <select v-model="perPage">
-          <option
-            v-for="n in [10, 40, 100, 200, 400, 1000]"
-            :value="n"
-            :key="n"
-            >{{ n }}</option
-          >
+          <option v-for="n in [10, 40, 100, 200, 400, 1000]" :value="n" :key="n">{{ n }}</option>
         </select>
       </label>
       <label title="Filter by lang" class="select app-control">
         <select :value="currentLang" @input="selectLang">
           <option value="">All</option>
-          <option v-for="i18n in $options.i18n" :value="i18n" :key="i18n">{{
-            i18n
-          }}</option>
+          <option v-for="i18n in $options.i18n" :value="i18n" :key="i18n">{{ i18n }}</option>
         </select>
       </label>
       <label title="Search" class="app-control">
@@ -93,9 +86,9 @@
 </template>
 
 <script>
-import axios from "axios";
-import "bulma";
-import "normalize.css";
+import axios from "axios"
+import "bulma"
+import "normalize.css"
 export default {
   name: "App",
   i18n: ["lu", "fr", "de", "en", "pt"],
@@ -110,78 +103,75 @@ export default {
       pageNumberOld: 0,
       perPage: 40,
       selectedFilter: false
-    };
+    }
   },
   created() {
-    const lod = JSON.parse(localStorage.getItem(this.$options.cacheLod));
-    if (lod) this.lod = Object.freeze(lod);
+    const lod = JSON.parse(localStorage.getItem(this.$options.cacheLod))
+    if (lod) this.lod = Object.freeze(lod)
     else
       axios
         .get(this.$options.sourceLod + "/data/lod.json")
         .then(({ data: lod }) => (this.lod = Object.freeze(lod)))
-        .then(() => this.savedData());
+        .then(() => this.savedData())
   },
   computed: {
     audioElement: () => new Audio(),
     filteredItems() {
-      const filter = this.textFilter;
-      const lang = this.currentLang;
-      const condition = text =>
-        text ? text.toLowerCase().includes(filter.toLowerCase()) : false;
-      const all = i => this.$options.i18n.filter(l => condition(i[l]));
+      const filter = this.textFilter
+      const lang = this.currentLang
+      const condition = text => (text ? text.toLowerCase().includes(filter.toLowerCase()) : false)
+      const all = i => this.$options.i18n.filter(l => condition(i[l]))
       return this.lod.filter(i => {
-        if (lang) return condition(i[lang]);
-        return all(i).length > 0;
-      });
+        if (lang) return condition(i[lang])
+        return all(i).length > 0
+      })
     },
     totalFiltered() {
-      return this.filteredItems.length;
+      return this.filteredItems.length
     },
     pageCount() {
-      const total = this.totalFiltered;
-      const perPage = this.perPage;
-      const pages = Math.floor(total / perPage);
-      return total && perPage * pages == total ? pages - 1 : pages;
+      const total = this.totalFiltered
+      const perPage = this.perPage
+      const pages = Math.floor(total / perPage)
+      return total && perPage * pages == total ? pages - 1 : pages
     },
     paginatedData() {
-      const start = this.pageNumber * this.perPage;
-      const end = start + this.perPage;
-      return this.filteredItems.slice(start, end);
+      const start = this.pageNumber * this.perPage
+      const end = start + this.perPage
+      return this.filteredItems.slice(start, end)
     },
     infoPages() {
-      const i = this.totalFiltered ? 1 : 0;
-      const page = this.pageNumber + i;
-      const count = this.pageCount + i;
-      return String(page).padStart(String(count).length, "0") + " / " + count;
+      const i = this.totalFiltered ? 1 : 0
+      const page = this.pageNumber + i
+      const count = this.pageCount + i
+      return String(page).padStart(String(count).length, "0") + " / " + count
     }
   },
   methods: {
     savedData() {
-      localStorage.setItem(this.$options.cacheLod, JSON.stringify(this.lod));
+      localStorage.setItem(this.$options.cacheLod, JSON.stringify(this.lod))
     },
     playAudio(id) {
-      const index = this.lod.findIndex(i => i.id == id);
+      const index = this.lod.findIndex(i => i.id == id)
       this.audioElement.src =
         "audio" in this.lod[index]
           ? "data:audio/mpeg;base64," + this.lod[index].audio
-          : this.$options.sourceLod + "/audio/" + id + ".mp3";
-      this.audioElement.addEventListener("canplaythrough", () =>
-        this.audioElement.play()
-      );
+          : this.$options.sourceLod + "/audio/" + id + ".mp3"
+      this.audioElement.addEventListener("canplaythrough", () => this.audioElement.play())
     },
     resetPageNumber() {
-      this.pageNumber = 0;
+      this.pageNumber = 0
     },
     selectLang(e) {
-      this.resetPageNumber();
-      this.currentLang = e.target.value;
+      this.resetPageNumber()
+      this.currentLang = e.target.value
     },
     inputFilter(e) {
-      this.resetPageNumber();
-      this.textFilter = e.target.value.trim();
+      this.resetPageNumber()
+      this.textFilter = e.target.value.trim()
     }
   }
-};
+}
 </script>
 
 <style lang="scss">
