@@ -5,10 +5,12 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "serve:dist": "php -S localhost:5005 -t ./dist",
+    "prebuild": "npm run lint",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "deploy": "now --target production && open https://appli.lu",
-    "staging": "now --target staging && open https://applilu.rentringer.now.sh"
+    "now-build": "npm run build",
+    "now-prod": "now --target production && open https://appli.lu",
+    "now-staging": "now --target staging && open https://applilu.rentringer.now.sh"
   },
   "dependencies": {
     "axios": "^0.18.0",
