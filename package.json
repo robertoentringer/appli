@@ -1,5 +1,7 @@
 {
   "name": "appli.lu",
+  "description": "A pretty simple Vue PWA for playing with the data of the Lëtzebuerger Online Dictionnaire (LOD)",
+  "main": "./src/main.js",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,9 +15,9 @@
     "now-staging": "now --target staging && open https://applilu.rentringer.now.sh"
   },
   "dependencies": {
+    "vue": "^2.6.6",
     "bulma": "^0.7.4",
-    "register-service-worker": "^1.6.2",
-    "vue": "^2.6.6"
+    "register-service-worker": "^1.6.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.6.0",
@@ -31,5 +33,31 @@
     "sass": "^1.19.0",
     "sass-loader": "^7.1.0",
     "vue-template-compiler": "^2.5.21"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robertoentringer/appli.lu.git"
+  },
+  "keywords": [
+    "lod",
+    "mp3",
+    "audio",
+    "lod-lu",
+    "luxembourg",
+    "worterbuch",
+    "dictionary",
+    "dicionario",
+    "dictionnaire",
+    "letzebuerger",
+    "letzeburgesch",
+    "luxemburgish",
+    "luxembourgish",
+    "letzebuerger-online-dictionnaire"
+  ],
+  "author": "Roberto Entringer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/robertoentringer/appli.lu/issues"
+  },
+  "homepage": "https://appli.lu"
 }
