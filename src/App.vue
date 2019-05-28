@@ -86,7 +86,6 @@
 </template>
 
 <script>
-import axios from "axios"
 export default {
   name: "App",
   i18n: ["lu", "fr", "de", "en", "pt"],
@@ -107,10 +106,12 @@ export default {
     const lod = JSON.parse(localStorage.getItem(this.$options.cacheLod))
     if (lod) this.lod = Object.freeze(lod)
     else
-      axios
-        .get(this.$options.sourceLod + "/data/lod.json")
-        .then(({ data: lod }) => (this.lod = Object.freeze(lod)))
-        .then(() => this.savedData())
+      fetch("https://rentringer.gitlab.io/lod-rest/data/lod.json")
+        .then(data => data.json())
+        .then(data => {
+          this.lod = Object.freeze(data)
+          this.savedData()
+        })
   },
   computed: {
     audioElement: () => new Audio(),
