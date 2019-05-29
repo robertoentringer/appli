@@ -153,7 +153,7 @@ export default {
   },
   methods: {
     activeClass(i18n) {
-      return this.currentLang == i18n ? "lang-active" : ""
+      return this.currentLang == i18n || !this.currentLang ? "lang-active" : ""
     },
     highlighting(val) {
       if (!this.textFilter) return val
