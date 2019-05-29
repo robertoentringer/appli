@@ -75,9 +75,7 @@
             <td class="app-cell-audio has-text-centered is-unselectable">
               <a @click="playAudio(item.id)">&#9835;</a>
             </td>
-            <td v-for="i18n in $options.i18n" :key="i18n">
-              {{ item[i18n] }}
-            </td>
+            <td v-for="i18n in $options.i18n" :key="i18n" v-html="highlighting(item[i18n])"></td>
           </tr>
         </tbody>
       </table>
@@ -147,6 +145,13 @@ export default {
     }
   },
   methods: {
+    highlighting(val) {
+      if (!this.textFilter) return val
+      return val.replace(
+        new RegExp(this.textFilter, "gi"),
+        match => `<mark class="mark">${match}</mark>`
+      )
+    },
     savedData() {
       localStorage.setItem(this.$options.cacheLod, JSON.stringify(this.lod))
     },
@@ -179,6 +184,7 @@ export default {
 @import "../node_modules/bulma/sass/form/_all.sass";
 @import "../node_modules/bulma/sass/elements/table.sass";
 @import "../node_modules/bulma/sass/elements/button.sass";
+
 html,
 body {
   height: 100%;
@@ -237,6 +243,10 @@ select {
 .app-table td {
   vertical-align: middle;
   white-space: normal;
+}
+.mark {
+  background-color: yellow;
+  color: black;
 }
 @media all and (max-width: 600px) {
   #app {
