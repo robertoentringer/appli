@@ -67,7 +67,9 @@
             <th class="app-col-audio is-unselectable has-text-centered">
               &#9835;
             </th>
-            <th v-for="i18n in $options.i18n" :key="i18n">{{ i18n }}</th>
+            <th v-for="i18n in $options.i18n" :class="activeClass(i18n)" :key="i18n">
+              {{ i18n }}
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -75,7 +77,12 @@
             <td class="app-cell-audio has-text-centered is-unselectable">
               <a @click="playAudio(item.id)">&#9835;</a>
             </td>
-            <td v-for="i18n in $options.i18n" :key="i18n" v-html="highlighting(item[i18n])"></td>
+            <td
+              v-for="i18n in $options.i18n"
+              :class="activeClass(i18n)"
+              :key="i18n"
+              v-html="highlighting(item[i18n])"
+            ></td>
           </tr>
         </tbody>
       </table>
@@ -145,6 +152,9 @@ export default {
     }
   },
   methods: {
+    activeClass(i18n) {
+      return this.currentLang == i18n ? "lang-active" : ""
+    },
     highlighting(val) {
       if (!this.textFilter) return val
       return val.replace(
@@ -244,10 +254,18 @@ select {
   vertical-align: middle;
   white-space: normal;
 }
-.mark {
-  background-color: yellow;
-  color: black;
+mark {
+  background: inherit;
+  color: inherit;
 }
+.lang-active {
+  background-color: #00000010;
+  .mark {
+    background-color: yellow;
+    color: black;
+  }
+}
+
 @media all and (max-width: 600px) {
   #app {
     padding-top: 115px;
