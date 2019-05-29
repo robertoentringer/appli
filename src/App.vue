@@ -18,7 +18,9 @@
         >
           &#8249;
         </button>
-        <button class="button app-pg-count is-static">{{ infoPages }}</button>
+        <button :class="[isLoading ? 'is-loading' : '', 'button app-pg-count is-static']">
+          {{ infoPages }}
+        </button>
         <button
           :title="pageNumber != pageCount ? 'Page ' + (pageNumber + 2) : ''"
           class="button has-text-link"
@@ -119,6 +121,9 @@ export default {
         })
   },
   computed: {
+    isLoading() {
+      return this.lod.length < 1 ? true : false
+    },
     audioElement: () => new Audio(),
     filteredItems() {
       const filter = this.textFilter
