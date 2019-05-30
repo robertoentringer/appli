@@ -171,12 +171,8 @@ export default {
       localStorage.setItem(this.$options.cacheLod, JSON.stringify(this.lod))
     },
     playAudio(id) {
-      const index = this.lod.findIndex(i => i.id == id)
-      this.audioElement.src =
-        "audio" in this.lod[index]
-          ? "data:audio/mpeg;base64," + this.lod[index].audio
-          : this.$options.sourceLod + "/audio/" + id + ".mp3"
-      this.audioElement.addEventListener("canplaythrough", () => this.audioElement.play())
+      this.audioElement.src = this.$options.sourceLod + "/audio/" + id + ".mp3"
+      this.audioElement.play()
     },
     resetPageNumber() {
       this.pageNumber = 0
