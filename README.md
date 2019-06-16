@@ -6,7 +6,7 @@ Author : [Roberto Entringer](https://robertoentringer.com)
 License: MIT  
 Website : https://appli.lu  
 
-[![screenshot](screenshot.png?raw=true)](https://appli.lu)
+[![screenshot](screenshot.png)](https://appli.lu)
 
 # Data source
 
@@ -15,4 +15,4 @@ Website: http://www.lod.lu
 Source: https://data.public.lu/fr/datasets/letzebuerger-online-dictionnaire-raw-data/  
 Licence: Creative Commons Zero (CC0) 
 
-[![screenshot2.png](screenshot2.png?raw=true)](https://data.public.lu/fr/datasets/letzebuerger-online-dictionnaire-raw-data/)
+[![screenshot2.png](screenshot2.png)](https://data.public.lu/fr/datasets/letzebuerger-online-dictionnaire-raw-data/)
