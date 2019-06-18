@@ -1,6 +1,6 @@
 # appli.lu
 
-A pretty simple Vue PWA for playing with the data of the Lëtzebuerger Online Dictionnaire (LOD)
+A pretty simple Vue PWA for playing with the data of the Lëtzebuerger Online Dictionnaire (LOD).
 
 Author : [Roberto Entringer](https://robertoentringer.com)  
 License: MIT  
