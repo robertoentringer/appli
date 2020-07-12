@@ -113,7 +113,7 @@ export default {
     const lod = JSON.parse(localStorage.getItem(this.$options.cacheLod))
     if (lod) this.lod = Object.freeze(lod)
     else
-      fetch("https://rentringer.gitlab.io/lod-rest/data/lod.json")
+      fetch(this.$options.sourceLod + "/data/lod.json")
         .then(data => data.json())
         .then(data => {
           this.lod = Object.freeze(data)
