@@ -190,11 +190,11 @@ export default {
 </script>
 
 <style lang="scss">
-@import "../node_modules/bulma/sass/utilities/_all.sass";
-@import "../node_modules/bulma/sass/base/_all.sass";
-@import "../node_modules/bulma/sass/form/_all.sass";
-@import "../node_modules/bulma/sass/elements/table.sass";
-@import "../node_modules/bulma/sass/elements/button.sass";
+@import "~bulma/sass/utilities/_all.sass";
+@import "~bulma/sass/base/_all.sass";
+@import "~bulma/sass/form/_all.sass";
+@import "~bulma/sass/elements/table.sass";
+@import "~bulma/sass/elements/button.sass";
 
 html,
 body {
