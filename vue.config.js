@@ -1,9 +1,9 @@
-const isProd = process.env.NODE_ENV === "production"
-const TerserPlugin = require("terser-webpack-plugin")
+const isProd = process.env.NODE_ENV === 'production'
+const TerserPlugin = require('terser-webpack-plugin')
 module.exports = {
-  publicPath: isProd ? "./" : "/",
+  publicPath: isProd ? './' : '/',
   configureWebpack: {
-    devtool: isProd ? "none" : "source-map",
+    devtool: isProd ? 'none' : 'source-map',
     optimization: {
       minimize: isProd,
       minimizer: [

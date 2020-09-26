@@ -94,15 +94,15 @@
 
 <script>
 export default {
-  name: "App",
-  i18n: ["lu", "fr", "de", "en", "pt"],
-  cacheLod: "lodData",
-  sourceLod: "https://rentringer.gitlab.io/lod-rest",
+  name: 'App',
+  i18n: ['lu', 'fr', 'de', 'en', 'pt'],
+  cacheLod: 'lodData',
+  sourceLod: 'https://rentringer.gitlab.io/lod-rest',
   data: function() {
     return {
-      textFilter: "",
+      textFilter: '',
       lod: [],
-      currentLang: "lu",
+      currentLang: 'lu',
       pageNumber: 0,
       pageNumberOld: 0,
       perPage: 40,
@@ -113,7 +113,7 @@ export default {
     const lod = JSON.parse(localStorage.getItem(this.$options.cacheLod))
     if (lod) this.lod = Object.freeze(lod)
     else
-      fetch(this.$options.sourceLod + "/data/lod.json")
+      fetch(this.$options.sourceLod + '/data/lod.json')
         .then(data => data.json())
         .then(data => {
           this.lod = Object.freeze(data)
@@ -153,17 +153,17 @@ export default {
       const i = this.totalFiltered ? 1 : 0
       const page = this.pageNumber + i
       const count = this.pageCount + i
-      return String(page).padStart(String(count).length, "0") + " / " + count
+      return String(page).padStart(String(count).length, '0') + ' / ' + count
     }
   },
   methods: {
     activeClass(i18n) {
-      return this.currentLang == i18n || !this.currentLang ? "lang-active" : ""
+      return this.currentLang == i18n || !this.currentLang ? 'lang-active' : ''
     },
     highlighting(val) {
       if (!this.textFilter) return val
       return val.replace(
-        new RegExp(this.textFilter, "gi"),
+        new RegExp(this.textFilter, 'gi'),
         match => `<mark class="mark">${match}</mark>`
       )
     },
@@ -171,7 +171,7 @@ export default {
       localStorage.setItem(this.$options.cacheLod, JSON.stringify(this.lod))
     },
     playAudio(id) {
-      this.audioElement.src = this.$options.sourceLod + "/audio/" + id + ".mp3"
+      this.audioElement.src = this.$options.sourceLod + '/audio/' + id + '.mp3'
       this.audioElement.play()
     },
     resetPageNumber() {
@@ -190,11 +190,11 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~bulma/sass/utilities/_all.sass";
-@import "~bulma/sass/base/_all.sass";
-@import "~bulma/sass/form/_all.sass";
-@import "~bulma/sass/elements/table.sass";
-@import "~bulma/sass/elements/button.sass";
+@import '~bulma/sass/utilities/_all.sass';
+@import '~bulma/sass/base/_all.sass';
+@import '~bulma/sass/form/_all.sass';
+@import '~bulma/sass/elements/table.sass';
+@import '~bulma/sass/elements/button.sass';
 
 html,
 body {
@@ -212,7 +212,7 @@ select {
   width: 100%;
 }
 #app {
-  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
