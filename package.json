@@ -1,5 +1,5 @@
 {
-  "name": "appli.lu",
+  "name": "appli",
   "description": "A pretty simple Vue PWA for playing with the data of the Lëtzebuerger Online Dictionnaire (LOD)",
   "main": "./src/main.js",
   "version": "0.1.0",
@@ -36,7 +36,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/robertoentringer/appli.lu.git"
+    "url": "git+https://github.com/robertoentringer/appli.git"
   },
   "keywords": [
     "lod",
@@ -57,7 +57,7 @@
   "author": "Roberto Entringer",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/robertoentringer/appli.lu/issues"
+    "url": "https://github.com/robertoentringer/appli/issues"
   },
-  "homepage": "https://appli.lu"
+  "homepage": "https://appli-lu.vercel.app/"
 }
